@@ -5,6 +5,8 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.machinelearning.model.PredictResult;
 import com.amazonaws.services.machinelearning.model.Prediction;
 import com.hackathon.analyzer.ml.PredictionEndpoint;
+import com.hackathon.analyzer.transformer.LogsParser;
+import com.hackathon.analyzer.transformer.model.LogStatement;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;
@@ -13,6 +15,11 @@ import java.util.Map;
 @Slf4j
 public class ParserLambda implements RequestHandler<LogRequest, Prediction> {
 
+    private final LogsParser logsParser;
+
+    public ParserLambda() {
+        logsParser = new LogsParser();
+    }
 
     @Override
     public Prediction handleRequest(LogRequest logRequest, Context context) {
@@ -41,10 +48,11 @@ public class ParserLambda implements RequestHandler<LogRequest, Prediction> {
     }
 
     private Map<String, String> createSampleMap(LogRequest logRequest) {
+        LogStatement logStatement = logsParser.mapLogString(logRequest.getLog());
         Map<String, String> record = new HashMap<>();
-        record.put("query", logRequest.getQuery());
-        record.put("response_code", logRequest.getResponseCode());
-        record.put("path", logRequest.getPath());
+        record.put("query", logStatement.getQuery());
+        record.put("response_code", logStatement.getResponseCode());
+        record.put("path", logStatement.getPath());
         return record;
     }
 }

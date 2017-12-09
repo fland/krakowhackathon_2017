@@ -7,7 +7,7 @@ import nl.basjes.parse.core.exceptions.InvalidDissectorException;
 import nl.basjes.parse.core.exceptions.MissingDissectorsException;
 import nl.basjes.parse.httpdlog.ApacheHttpdLoglineParser;
 
-final class LogsParser {
+public final class LogsParser {
 
     private static final String LOG_FORMAT = "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"";
 
