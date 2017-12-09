@@ -1,8 +1,8 @@
-package com.hackathon.parser;
+package com.hackathon.analyzer.transformer;
 
-import com.hackathon.parser.model.LogStatement;
+import com.hackathon.analyzer.transformer.model.LogStatement;
 
-public final class ModelToCsvConverter {
+final class ModelToCsvConverter {
 
     private final static String CSV_VALUES_DELIMITER = ",";
     private final static String CSV_VALUES_QOUTE = "\"";

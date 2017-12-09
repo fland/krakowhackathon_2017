@@ -1,17 +1,18 @@
-package com.hackathon.parser.ml;
+package com.hackathon.analyzer.ml;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 @Ignore
 public class PredictionEndpointTest {
     @Test
-    public void connectionTest () {
+    public void connectionTest() {
         PredictionEndpoint predictionEndpoint = new PredictionEndpoint();
         Map<String, String> record = new HashMap<>();
         record.put("age", "32");

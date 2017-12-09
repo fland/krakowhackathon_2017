@@ -1,4 +1,4 @@
-package com.hackathon.parser.model;
+package com.hackathon.analyzer.transformer.model;
 
 import lombok.*;
 import nl.basjes.parse.core.Field;

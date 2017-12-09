@@ -1,4 +1,4 @@
-package com.hackathon.parser.ml;
+package com.hackathon.analyzer.ml;
 
 import com.amazonaws.services.machinelearning.AmazonMachineLearning;
 import com.amazonaws.services.machinelearning.AmazonMachineLearningClientBuilder;

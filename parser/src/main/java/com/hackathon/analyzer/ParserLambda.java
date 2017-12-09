@@ -1,9 +1,9 @@
-package com.hackathon.parser;
+package com.hackathon.analyzer;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.machinelearning.model.PredictResult;
-import com.hackathon.parser.ml.PredictionEndpoint;
+import com.hackathon.analyzer.ml.PredictionEndpoint;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;

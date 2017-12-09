@@ -1,6 +1,6 @@
-package com.hackathon.parser;
+package com.hackathon.analyzer.transformer;
 
-import com.hackathon.parser.model.LogStatement;
+import com.hackathon.analyzer.transformer.model.LogStatement;
 import nl.basjes.parse.core.exceptions.DissectionFailure;
 import nl.basjes.parse.core.exceptions.InvalidDissectorException;
 import nl.basjes.parse.core.exceptions.MissingDissectorsException;

@@ -1,6 +1,6 @@
-package com.hackathon.parser;
+package com.hackathon.analyzer.transformer;
 
-import com.hackathon.parser.model.LogStatement;
+import com.hackathon.analyzer.transformer.model.LogStatement;
 import org.junit.Test;
 
 import java.util.Date;

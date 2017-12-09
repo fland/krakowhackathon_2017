@@ -1,4 +1,4 @@
-package com.hackathon.parser;
+package com.hackathon.analyzer;
 
 import lombok.Data;
 
