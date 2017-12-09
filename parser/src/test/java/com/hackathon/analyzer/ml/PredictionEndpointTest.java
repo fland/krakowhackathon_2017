@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class PredictionEndpointTest {
     @Test
     public void connectionTest() {
-        PredictionEndpoint predictionEndpoint = new PredictionEndpoint();
+        PredictionEndpoint predictionEndpoint = new PredictionEndpoint("ml-R6SJtWjzD4B", "https://realtime.machinelearning.eu-west-1.amazonaws.com");
         Map<String, String> record = new HashMap<>();
         record.put("age", "32");
         record.put("job", "services");

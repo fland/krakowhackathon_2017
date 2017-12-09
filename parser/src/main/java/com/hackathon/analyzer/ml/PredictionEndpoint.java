@@ -4,10 +4,15 @@ import com.amazonaws.services.machinelearning.AmazonMachineLearning;
 import com.amazonaws.services.machinelearning.AmazonMachineLearningClientBuilder;
 import com.amazonaws.services.machinelearning.model.PredictRequest;
 import com.amazonaws.services.machinelearning.model.PredictResult;
+import lombok.AllArgsConstructor;
 
 import java.util.Map;
 
+@AllArgsConstructor
 public class PredictionEndpoint {
+    private String modelId;
+    private String predictionEndpointUrl;
+
     public PredictResult send(Map<String, String> dataRecord) {
         AmazonMachineLearning amazonMachineLearning = AmazonMachineLearningClientBuilder.defaultClient();
         PredictRequest predictRequest = createPredictionRequest(dataRecord);
@@ -16,9 +21,9 @@ public class PredictionEndpoint {
 
     private PredictRequest createPredictionRequest(Map<String, String> dataRecord) {
         PredictRequest predictRequest = new PredictRequest();
-        predictRequest.setMLModelId("ml-R6SJtWjzD4B");
+        predictRequest.setMLModelId(modelId);
+        predictRequest.setPredictEndpoint(predictionEndpointUrl);
         predictRequest.setRecord(dataRecord);
-        predictRequest.setPredictEndpoint("https://realtime.machinelearning.eu-west-1.amazonaws.com");
         return predictRequest;
     }
 }
