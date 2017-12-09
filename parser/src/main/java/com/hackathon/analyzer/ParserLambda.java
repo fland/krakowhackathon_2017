@@ -19,7 +19,7 @@ public class ParserLambda implements RequestHandler<LogRequest, Prediction> {
         log.info("Incoming request: {}", logRequest);
         PredictionEndpoint predictionEndpoint = createPredictionEndpoint();
 
-        PredictResult predictResult = predictionEndpoint.send(createSampleMap());
+        PredictResult predictResult = predictionEndpoint.send(createSampleMap(logRequest));
         log.info("Prediction result: {}", predictResult);
 
         return predictResult.getPrediction();
@@ -40,18 +40,11 @@ public class ParserLambda implements RequestHandler<LogRequest, Prediction> {
         return value;
     }
 
-    private Map<String, String> createSampleMap() {
+    private Map<String, String> createSampleMap(LogRequest logRequest) {
         Map<String, String> record = new HashMap<>();
-        record.put("age", "32");
-        record.put("job", "services");
-        record.put("marital", "divorced");
-        record.put("education", "basic");
-        record.put("default", "no");
-        record.put("housing", "unknown");
-        record.put("loan", "yes");
-        record.put("contact", "cellular");
-        record.put("month", "dec");
-        record.put("day_of_week", "mon");
+        record.put("query", logRequest.getQuery());
+        record.put("response_code", logRequest.getResponseCode());
+        record.put("path", logRequest.getPath());
         return record;
     }
 }
