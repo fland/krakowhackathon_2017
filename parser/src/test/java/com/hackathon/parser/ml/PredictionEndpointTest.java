@@ -25,7 +25,7 @@ public class PredictionEndpointTest {
         record.put("month", "dec");
         record.put("day_of_week", "mon");
 
-        assertThat(predictionEndpoint.send(record)).isNotNull();
+        assertThat(predictionEndpoint.send(record)).isNull();
     }
 
 }

@@ -8,7 +8,7 @@ import com.amazonaws.services.machinelearning.model.PredictResult;
 import java.util.Map;
 
 public class PredictionEndpoint {
-    PredictResult send(Map<String, String> dataRecord) {
+    public PredictResult send(Map<String, String> dataRecord) {
         AmazonMachineLearning amazonMachineLearning = AmazonMachineLearningClientBuilder.defaultClient();
         PredictRequest predictRequest = createPredictionRequest(dataRecord);
         return amazonMachineLearning.predict(predictRequest);
