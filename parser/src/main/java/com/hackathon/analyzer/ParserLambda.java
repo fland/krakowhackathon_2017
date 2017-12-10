@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Slf4j
-public class ParserLambda implements RequestHandler<LogRequest, Prediction> {
+public class ParserLambda implements RequestHandler<LogRequest, LogResponse> {
 
     private final LogsParser logsParser;
 
@@ -22,14 +22,34 @@ public class ParserLambda implements RequestHandler<LogRequest, Prediction> {
     }
 
     @Override
-    public Prediction handleRequest(LogRequest logRequest, Context context) {
+    public LogResponse handleRequest(LogRequest logRequest, Context context) {
         log.info("Incoming request: {}", logRequest);
         PredictionEndpoint predictionEndpoint = createPredictionEndpoint();
 
         PredictResult predictResult = predictionEndpoint.send(createSampleMap(logRequest));
         log.info("Prediction result: {}", predictResult);
+        Prediction prediction = predictResult.getPrediction();
+        LogResponse logResponse = createLogResponse(prediction);
+        log.info("Log response: {}", logResponse);
+        return logResponse;
+    }
 
-        return predictResult.getPrediction();
+    private LogResponse createLogResponse(Prediction prediction) {
+
+        LogResponse logResponse = new LogResponse();
+        logResponse.setProbabilityOfAttack(prediction.getPredictedScores().get(prediction.getPredictedLabel()));
+        Result result = getResult(prediction.getPredictedLabel());
+        logResponse.setPredictionResult(result.name());
+        logResponse.setDescription(result.getDescription());
+        return logResponse;
+    }
+
+    private Result getResult(String predictedLabel) {
+        if ("1".equals(predictedLabel)) {
+            return Result.ATTACK;
+        } else {
+            return Result.NORMAL_BEHAVIOUR;
+        }
     }
 
     private PredictionEndpoint createPredictionEndpoint() {
